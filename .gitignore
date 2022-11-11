@@ -2,8 +2,6 @@
 
 !.gitignore
 
-!/linux-example/
-
 !/lua-app-example
 
 !/macos-example
