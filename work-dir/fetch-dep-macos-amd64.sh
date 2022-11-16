@@ -24,8 +24,5 @@ unset ORIGINAL_PWD_GETSELFPATHVAR SH_FILE_RUN_PATH_GETSELFPATHVAR SH_FILE_RUN_BA
 
 cd "$SH_SELF_PATH_DIR_RESULT" || exit
 
-git clone --depth 1 --recurse-submodules --branch v3.2.0.2 https://github.com/pkulchenko/wxlua.git wxlua-src
-
-git clone --depth 1 --recurse-submodules --branch v3.2.1 https://github.com/wxWidgets/wxWidgets.git wxWidgets-src
-
-git clone --depth 1 --recurse-submodules --branch v2.1-agentzh https://github.com/openresty/luajit2.git luajit-src
+wget https://github.com/tinkernels/libwxlua-dist/releases/latest/download/luajit-dist-macos-amd64.tar.gz
+tar -xvf luajit-dist-macos-amd64.tar.gz

@@ -24,18 +24,5 @@ unset ORIGINAL_PWD_GETSELFPATHVAR SH_FILE_RUN_PATH_GETSELFPATHVAR SH_FILE_RUN_BA
 
 cd "$SH_SELF_PATH_DIR_RESULT" || exit
 
-mkdir ./luajit-dist
-
-cd luajit-dist || exit
-TK_CUSTOM_LUA_PREFIX_DIR=$(pwd -P)
-echo "TK_CUSTOM_LUA_PREFIX_DIR: $TK_CUSTOM_LUA_PREFIX_DIR"
-
-cd "$SH_SELF_PATH_DIR_RESULT/luajit-src" || exit
-
-MACOSX_DEPLOYMENT_TARGET=10.10 make clean
-
-MACOSX_DEPLOYMENT_TARGET=10.10 make PREFIX=luajit-dist -j9
-
-MACOSX_DEPLOYMENT_TARGET=10.10 make install PREFIX="$TK_CUSTOM_LUA_PREFIX_DIR" -j9
-
-echo -en '\a'
+wget https://github.com/tinkernels/libwxlua-dist/releases/latest/download/luajit-dist-macos-arm64.tar.gz
+tar -xvf luajit-dist-macos-arm64.tar.gz
