@@ -24,6 +24,9 @@ unset ORIGINAL_PWD_GETSELFPATHVAR SH_FILE_RUN_PATH_GETSELFPATHVAR SH_FILE_RUN_BA
 
 cd "$SH_SELF_PATH_DIR_RESULT" || exit
 
+cp -rfv ../work-dir/luajit-dist-macos-amd64.tar.gz .
+tar -xvf luajit-dist-macos-amd64.tar.gz
+
 /usr/bin/env bash clean-xcproj.sh
 
 PROJECT_FILE="xcode-project/wxlua-example.xcodeproj"
