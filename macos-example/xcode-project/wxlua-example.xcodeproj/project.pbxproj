@@ -7,20 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF82BA16291EA3A900D90C83 /* run.sh in Resources */ = {isa = PBXBuildFile; fileRef = AF82BA14291EA3A900D90C83 /* run.sh */; };
-		AF82BA18291EA45000D90C83 /* wxlua-example-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF82BA17291EA45000D90C83 /* wxlua-example-Info.plist */; };
 		AF82BA1A291EA55A00D90C83 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = AF82BA19291EA55A00D90C83 /* AppIcon.icns */; };
 		AF9594FE2925C60F00C1D7EE /* luajit-dist in Resources */ = {isa = PBXBuildFile; fileRef = AF9594FD2925C60F00C1D7EE /* luajit-dist */; };
 		AFC62874291EB9AF002C4542 /* lua-app in Resources */ = {isa = PBXBuildFile; fileRef = AFC62873291EB9AF002C4542 /* lua-app */; };
+		AFD2ED6E2927788900567D23 /* script4run in Resources */ = {isa = PBXBuildFile; fileRef = AFD2ED6D2927788800567D23 /* script4run */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AF427A4F291E367700C1B508 /* wxlua-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wxlua-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF82BA14291EA3A900D90C83 /* run.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = run.sh; sourceTree = "<group>"; };
 		AF82BA17291EA45000D90C83 /* wxlua-example-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "wxlua-example-Info.plist"; sourceTree = SOURCE_ROOT; };
 		AF82BA19291EA55A00D90C83 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 		AF9594FD2925C60F00C1D7EE /* luajit-dist */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "luajit-dist"; path = "../luajit-dist"; sourceTree = "<group>"; };
 		AFC62873291EB9AF002C4542 /* lua-app */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "lua-app"; path = "../../lua-app-example/lua-app"; sourceTree = "<group>"; };
+		AFD2ED6D2927788800567D23 /* script4run */ = {isa = PBXFileReference; lastKnownFileType = text; name = script4run; path = Assets/script4run; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +36,7 @@
 		AF427A46291E367700C1B508 = {
 			isa = PBXGroup;
 			children = (
+				AFD2ED6D2927788800567D23 /* script4run */,
 				AF9594FD2925C60F00C1D7EE /* luajit-dist */,
 				AFC62873291EB9AF002C4542 /* lua-app */,
 				AF82BA12291EA2D100D90C83 /* Assets */,
@@ -57,7 +57,6 @@
 			children = (
 				AF82BA19291EA55A00D90C83 /* AppIcon.icns */,
 				AF82BA17291EA45000D90C83 /* wxlua-example-Info.plist */,
-				AF82BA14291EA3A900D90C83 /* run.sh */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -72,6 +71,7 @@
 				AF427A4B291E367700C1B508 /* Sources */,
 				AF427A4C291E367700C1B508 /* Frameworks */,
 				AF427A4D291E367700C1B508 /* Resources */,
+				AF3C801529277994008B7B0E /* Run Script to make "script4run" become executable entry */,
 			);
 			buildRules = (
 			);
@@ -120,15 +120,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFD2ED6E2927788900567D23 /* script4run in Resources */,
 				AF9594FE2925C60F00C1D7EE /* luajit-dist in Resources */,
 				AFC62874291EB9AF002C4542 /* lua-app in Resources */,
 				AF82BA1A291EA55A00D90C83 /* AppIcon.icns in Resources */,
-				AF82BA16291EA3A900D90C83 /* run.sh in Resources */,
-				AF82BA18291EA45000D90C83 /* wxlua-example-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AF3C801529277994008B7B0E /* Run Script to make "script4run" become executable entry */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script to make \"script4run\" become executable entry";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p \"$TARGET_BUILD_DIR/$WRAPPER_NAME/Contents/MacOS\"\ncd \"$TARGET_BUILD_DIR/$WRAPPER_NAME/Contents/MacOS\"\nmv ../Resources/script4run \"$TARGET_NAME\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AF427A4B291E367700C1B508 /* Sources */ = {

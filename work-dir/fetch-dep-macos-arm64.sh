@@ -25,3 +25,7 @@ unset ORIGINAL_PWD_GETSELFPATHVAR SH_FILE_RUN_PATH_GETSELFPATHVAR SH_FILE_RUN_BA
 cd "$SH_SELF_PATH_DIR_RESULT" || exit
 
 wget https://github.com/tinkernels/libwxlua-dist/releases/latest/download/luajit-dist-macos-arm64.tar.gz
+
+wget https://github.com/tinkernels/libwxlua-dist/releases/latest/download/wxWidgets-dist-macos-arm64.tar.gz
+
+wget https://github.com/tinkernels/libwxlua-dist/releases/latest/download/wxlua-dist-macos-arm64.tar.gz

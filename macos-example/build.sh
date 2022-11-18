@@ -27,10 +27,30 @@ cd "$SH_SELF_PATH_DIR_RESULT" || exit
 cp -rfv ../work-dir/luajit-dist-macos-amd64.tar.gz .
 tar -xvf luajit-dist-macos-amd64.tar.gz
 
+pushd luajit-dist/lib/lua/5.1 || exit
+    for F in *; do
+        Prefix_=${F:0:3}
+        LibName_=""
+        if [ "$Prefix_" = "lib" ];then
+            TmpName_=${F:3}
+            LibName_=${TmpName_%.*}
+        else
+            LibName_=${F%.*}
+        fi
+        NewName_="$LibName_.so"
+        if [ "$NewName_" != "$F" ] && [ ! -f "$NewName_" ]; then
+            ln -sfv "$F" "$NewName_"
+        fi
+    done
+popd || exit
+
 /usr/bin/env bash clean-xcproj.sh
 
 PROJECT_FILE="xcode-project/wxlua-example.xcodeproj"
 BUILD_SCHEME="wxlua-example"
+
+Try_Pretty=$(which cat)
+[ "$(which xcpretty 2>&1 >/dev/null; echo $?)" = "0" ] && Try_Pretty=$(which xcpretty)
 
 #         CODE_SIGNING_REQUIRED=NO \
 #         CODE_SIGN_IDENTITY="" \
@@ -40,8 +60,4 @@ xcodebuild clean build \
         CODE_SIGN_IDENTITY="" \
         -derivedDataPath "$(pwd)/DerivedData" \
         -project "$PROJECT_FILE" \
-        -scheme "$BUILD_SCHEME" -configuration Release
-
-mkdir DerivedData/Build/Products/Release/"$BUILD_SCHEME.app"/Contents/MacOS
-cd DerivedData/Build/Products/Release/"$BUILD_SCHEME.app"/Contents/MacOS || exit
-ln -s ../Resources/run.sh "$BUILD_SCHEME"
+        -scheme "$BUILD_SCHEME" -configuration Release | "$Try_Pretty"
