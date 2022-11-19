@@ -2,7 +2,7 @@
 
 !.gitignore
 
-!/lua-app-example
+!/lua-app-example/main.lua
 
 !/macos-example
 

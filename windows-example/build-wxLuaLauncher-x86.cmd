@@ -1,4 +1,3 @@
-
 @echo off
 chcp 65001 >NUL 2>NUL
 
@@ -64,9 +63,11 @@ echo CMAKE_GENERATOR_PARAM: %CMAKE_GENERATOR_PARAM%
 
 set TKVAR_BUILD_DIR=build-wxLuaLauncher\x86
 set TKVAR_LUAJIT_DIST_DIR=luajit-dist-win32
-set TKVAR_LAUNCHER_DIST_DIR=wxLuaLauncher-win32-dist
-set TKVAR_WX_DLL_DIR=build-wxWidgets\x86\lib\vc_dll
-set TKVAR_WXLUA_DLL_DIR=build-wxlua\x86\modules\luamodule\bin\MinSizeRel
+set TKVAR_LAUNCHER_DIST_DIR=wxLuaLauncher-dist-win32
+set TKVAR_WX_DLL_DIR=wxWidgets-dist-win32\lib\vc_dll
+set TKVAR_WX_INC_DIR=wxWidgets-dist-win32\include
+set TKVAR_WXLUA_DLL_DIR=wxlua-dist-win32\bin
+set TK_Lua_App_Dir=..\lua-app-example\lua-app
 
 rmdir /q /s "%TKVAR_BUILD_DIR%"
 mkdir "%TKVAR_BUILD_DIR%"
@@ -81,15 +82,19 @@ mkdir wxLuaLauncher\include
 
 %_PSC% Copy-Item -Path "%TKVAR_LUAJIT_DIST_DIR%\lib\*" -Recurse -Force -Destination "wxLuaLauncher\lib"
 %_PSC% Copy-Item -Path "%TKVAR_LUAJIT_DIST_DIR%\include\*" -Recurse -Force -Destination "wxLuaLauncher\include"
+%_PSC% Copy-Item -Path "%TKVAR_WX_INC_DIR%\*" -Recurse -Force -Destination "wxLuaLauncher\include"
 
-cmake %CMAKE_GENERATOR_PARAM% -S wxLuaLauncher -B %TKVAR_BUILD_DIR%
+cmake %CMAKE_GENERATOR_PARAM% -DWXLIB_ARCH=winx64 -DCMAKE_INSTALL_PREFIX="%TKVAR_LAUNCHER_DIST_DIR%" -S wxLuaLauncher -B "%TKVAR_BUILD_DIR%"
 
-devenv %TKVAR_BUILD_DIR%\WinDeskLauncher.sln /Build "MinSizeRel|Win32"
+cmake --build "%TKVAR_BUILD_DIR%" --config "Release"
+cmake --install "%TKVAR_BUILD_DIR%" --config "Release"
+@REM devenv %TKVAR_BUILD_DIR%\WinDeskLauncher.sln /Build "MinSizeRel|Win32"
 
 %_PSC% Copy-Item -Path "%TKVAR_BUILD_DIR%\*.exe" -Recurse -Force -Destination "%TKVAR_LAUNCHER_DIST_DIR%"
-%_PSC% Copy-Item -Path "%TKVAR_LUAJIT_DIST_DIR%\*" -Recurse -Force -Destination "%TKVAR_LAUNCHER_DIST_DIR%"
+%_PSC% Copy-Item -Path "%TKVAR_LUAJIT_DIST_DIR%\lib\*.dll" -Recurse -Force -Destination "%TKVAR_LAUNCHER_DIST_DIR%"
 %_PSC% Copy-Item -Path "%TKVAR_WX_DLL_DIR%\*.dll" -Recurse -Force -Destination "%TKVAR_LAUNCHER_DIST_DIR%"
-%_PSC% Copy-Item -Path "%TKVAR_WXLUA_DLL_DIR%\*.dll" -Recurse -Force -Destination "%TKVAR_LAUNCHER_DIST_DIR%"
+%_PSC% Copy-Item -Path "%TKVAR_WXLUA_DLL_DIR%\wx.dll" -Recurse -Force -Destination "%TKVAR_LAUNCHER_DIST_DIR%"
+%_PSC% Copy-Item -Path "%TK_Lua_App_Dir%" -Recurse -Force -Destination "%TKVAR_LAUNCHER_DIST_DIR%"
 
 :__end
 set TKVAR_BUILD_DIR=

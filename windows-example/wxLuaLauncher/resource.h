@@ -1,14 +1,3 @@
-//{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by WinDeskLauncher.rc
-//
-#define IDC_MYICON                      2
-#define IDD_WINDESKLAUNCHER_DIALOG      102
-#define IDI_WINDESKLAUNCHER             107
-#define IDI_SMALL                       108
-#define IDR_MAINFRAME                   128
-#define IDC_STATIC                      -1
-
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
