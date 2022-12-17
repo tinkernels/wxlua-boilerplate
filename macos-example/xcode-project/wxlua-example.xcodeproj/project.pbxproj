@@ -147,7 +147,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mkdir -p \"$TARGET_BUILD_DIR/$WRAPPER_NAME/Contents/MacOS\"\ncd \"$TARGET_BUILD_DIR/$WRAPPER_NAME/Contents/MacOS\"\nmv ../Resources/script4run \"$TARGET_NAME\"\nrm -rf ../Resources/luajit-dist/share/man\nrm -rf ../Resources/luajit-dist/lib/luarocks\n";
+			shellScript = "mkdir -p \"$TARGET_BUILD_DIR/$WRAPPER_NAME/Contents/MacOS\"\ncd \"$TARGET_BUILD_DIR/$WRAPPER_NAME/Contents/MacOS\"\nmv ../Resources/script4run \"$TARGET_NAME\"\nchmod a+x \"$TARGET_NAME\"\nrm -rf ../Resources/luajit-dist/share/man\nrm -rf ../Resources/luajit-dist/lib/luarocks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
