@@ -22,10 +22,10 @@ unset ORIGINAL_PWD_GETSELFPATHVAR SH_FILE_RUN_PATH_GETSELFPATHVAR SH_FILE_RUN_BA
 # ---------------- GET SELF PATH ----------------
 # USE $SH_SELF_PATH_DIR_RESULT BEBLOW
 
-cd "$SH_SELF_PATH_DIR_RESULT/luajit-dist" || exit
-TK_CUSTOM_LUA_DIR=$(pwd -P)
-echo ">>>TK_CUSTOM_LUA_DIR: $TK_CUSTOM_LUA_DIR"
-
 cd "$SH_SELF_PATH_DIR_RESULT" || exit
 
-luarocks --lua-dir "$TK_CUSTOM_LUA_DIR" --tree "$TK_CUSTOM_LUA_DIR" "$@"
+tar -C . -xvf ../work-dir/luajit-dist-macos-amd64.tar.gz
+tar -C . -xvf ../work-dir/wxlua-dist-macos-amd64.tar.gz
+
+mkdir luajit-dist/lib/lua/5.1
+cp -fv wxlua-dist/lib/*.dylib luajit-dist/lib/lua/5.1

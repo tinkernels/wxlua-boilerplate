@@ -24,8 +24,6 @@ unset ORIGINAL_PWD_GETSELFPATHVAR SH_FILE_RUN_PATH_GETSELFPATHVAR SH_FILE_RUN_BA
 
 cd "$SH_SELF_PATH_DIR_RESULT" || exit
 
-tar -C . -xvf luajit-dist-macos-amd64.tar.gz
-
 pushd luajit-dist/lib/lua/5.1 || exit
     for F in *; do
         Prefix_=${F:0:3}
