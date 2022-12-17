@@ -55,6 +55,6 @@ xcodebuild clean build \
         ONLY_ACTIVE_ARCH=NO \
         CODE_SIGNING_REQUIRED=NO \
         CODE_SIGN_IDENTITY="" \
-        -derivedDataPath "$(pwd)/DerivedData" \
+        -derivedDataPath "$(pwd)/xcode-DerivedData" \
         -project "$PROJECT_FILE" \
         -scheme "$BUILD_SCHEME" -configuration Release | "$Try_Pretty"
