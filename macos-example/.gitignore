@@ -6,7 +6,7 @@ contents.xcworkspacedata
 *.xcscmblueprint
 *.xccheckout
 
-/DerivedData/
+/xcode-DerivedData
 /luajit-dist
 /wxlua-dist
 /*.gz
