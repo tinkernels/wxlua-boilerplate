@@ -1,13 +1,29 @@
 @echo off
 chcp 65001 >NUL 2>NUL
-rem
-rem Uncomment setting VSCMD_DEBUG to enable debugging to output
-rem
-rem set VSCMD_DEBUG=3
 
-rem
-rem   Determine path to VsDevCmd.bat
-rem
+echo=
+echo where is MSBuild.exe...
+where MSBuild.exe 2>&1
+IF %ERRORLEVEL% EQU 0 (
+    echo=
+    echo where is CL.exe...
+    where CL.exe 2>&1
+    IF %ERRORLEVEL% EQU 0 (
+        echo=
+        echo where is LINK.exe...
+        where LINK.exe 2>&1
+            IF %ERRORLEVEL% EQU 0 (
+                echo=
+                echo Found MSBuild.exe CL.exe LINK.exe, will skip over visual studio env setting...
+                goto ____skip_vsenv
+        )
+    )
+)
+echo=
+echo setting visual studio env...
+echo=
+
+@REM    Determine path to VsDevCmd.bat
 for /f "usebackq delims=#" %%a in (`"%programfiles(x86)%\Microsoft Visual Studio\Installer\vswhere" -latest -property installationPath`) do set found_vcvar_bat_path_by_me=%%a\VC\Auxiliary\Build
 
 if [%1] equ [64] (
@@ -19,3 +35,5 @@ if [%1] equ [64] (
 )
 
 set found_vcvar_bat_path_by_me=
+
+:____skip_vsenv

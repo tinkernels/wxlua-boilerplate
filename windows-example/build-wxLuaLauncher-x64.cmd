@@ -4,30 +4,6 @@ chcp 65001 >NUL 2>NUL
 set ORIGINAL_CWD=%CD%
 cd /D %~dp0
 
-echo=
-echo where is MSBuild.exe...
-where MSBuild.exe 2>&1
-IF %ERRORLEVEL% EQU 0 (
-    echo=
-    echo where is CL.exe...
-    where CL.exe 2>&1
-    IF %ERRORLEVEL% EQU 0 (
-        echo=
-        echo where is LINK.exe...
-        where LINK.exe 2>&1
-            IF %ERRORLEVEL% EQU 0 (
-                echo=
-                echo Found MSBuild CL LINK
-                goto ____skip_vsenv
-        )
-    )
-)
-echo=
-echo setting visual studio env...
-echo=
-call "%~dp0\vsenv.cmd" 64
-:____skip_vsenv
-
 set _PWSH=powershell
 where pwsh.exe 2>&1
 IF %ERRORLEVEL% EQU 0 (
